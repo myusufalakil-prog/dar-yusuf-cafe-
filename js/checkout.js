@@ -88,7 +88,7 @@ async function submitOrder() {
   localStorage.setItem('dyc_order', JSON.stringify(orderData));
 
   // Send notification to Google Apps Script
-  const GOOGLE_SCRIPT_URL = localStorage.getItem('dyc_gas_url') || '';
+  const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxOpBqRrYi6YozN6vSVaNNeDcKB3vPg0ijrFJR_GyI0IbYAApCIQTq32jTIo4QkJlc8nw/exec';
   
   if (GOOGLE_SCRIPT_URL && GOOGLE_SCRIPT_URL.startsWith('https://script.google.com')) {
     try {

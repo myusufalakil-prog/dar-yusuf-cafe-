@@ -51,9 +51,10 @@ a { text-decoration: none; color: inherit; }
   font-size: 1.4rem;
   font-weight: 700;
   color: var(--primary);
+  white-space: nowrap;
 }
 
-.nav-links { display: flex; gap: 1.5rem; align-items: center; }
+.nav-links { display: flex; gap: 0.5rem; align-items: center; }
 .nav-links a {
   color: var(--text-light);
   font-weight: 500;
@@ -563,4 +564,68 @@ a { text-decoration: none; color: inherit; }
     border: 1px solid #ccc;
     max-width: 100%;
   }
+}
+
+/* ===== MOBILE RESPONSIVE ===== */
+@media (max-width: 480px) {
+  /* Navbar */
+  .navbar {
+    padding: 0.75rem 1rem;
+    gap: 0.5rem;
+  }
+  .nav-brand { font-size: 1rem; }
+  .nav-links { gap: 0.3rem; }
+  .nav-links a { padding: 0.35rem 0.5rem; font-size: 0.82rem; }
+
+  /* Hero */
+  .hero { padding: 85px 1rem 35px; }
+  .hero h1 { font-size: 1.6rem; }
+  .hero p { font-size: 0.9rem; }
+
+  /* Container */
+  .container { padding: 1rem 0.85rem 3rem; }
+  .section-title { font-size: 1.4rem; }
+
+  /* Product grid */
+  .product-grid { grid-template-columns: repeat(2, 1fr); gap: 0.85rem; }
+  .product-emoji { height: 100px; font-size: 2.5rem; }
+  .product-info { padding: 0.85rem; }
+  .product-info h3 { font-size: 0.9rem; }
+  .product-info p { font-size: 0.75rem; margin-bottom: 0.7rem; }
+  .price { font-size: 0.9rem; }
+  .btn-add { padding: 0.4rem 0.7rem; font-size: 0.78rem; }
+
+  /* Cart items */
+  .cart-item {
+    padding: 0.85rem;
+    gap: 0.6rem;
+    flex-wrap: nowrap;
+    align-items: flex-start;
+  }
+  .cart-item-emoji { font-size: 1.8rem; flex-shrink: 0; }
+  .cart-item-info { flex: 1; min-width: 0; }
+  .cart-item-info h4 { font-size: 0.88rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .cart-item-info p { font-size: 0.78rem; }
+  .qty-control { padding: 0.3rem 0.5rem; gap: 0.5rem; flex-shrink: 0; }
+  .qty-btn { width: 24px; height: 24px; font-size: 0.9rem; }
+  .cart-item > div:last-of-type { font-size: 0.82rem; min-width: 70px; }
+
+  /* Summary */
+  .cart-summary { padding: 1rem; }
+  .summary-row { font-size: 0.9rem; }
+  .summary-row.total { font-size: 1rem; }
+
+  /* Checkout grid */
+  .checkout-grid { grid-template-columns: 1fr; }
+  .card { padding: 1rem; }
+  .dana-info { flex-direction: column; text-align: center; gap: 0.75rem; }
+  .dana-icon { font-size: 2rem; }
+
+  /* Floating cart */
+  .floating-cart { font-size: 0.85rem; padding: 0.75rem 1.3rem; bottom: 1rem; }
+
+  /* Struk */
+  .struk { margin: 0 0 1.5rem; border-radius: 12px; }
+  .struk-actions { flex-direction: column; align-items: center; gap: 0.7rem; }
+  .struk-actions a, .struk-actions button { width: 100%; max-width: 280px; text-align: center; }
 }
