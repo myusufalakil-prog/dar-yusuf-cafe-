@@ -4,11 +4,198 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Dar Yusuf Café</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css">
+<style>
+/* ===== WELCOME POPUP ===== */
+.welcome-overlay {
+  position: fixed; inset: 0;
+  background: rgba(15,7,3,0.92);
+  backdrop-filter: blur(10px);
+  z-index: 9999;
+  display: flex; align-items: center; justify-content: center;
+  padding: 1rem;
+  animation: fadeInOverlay 0.8s ease;
+}
+@keyframes fadeInOverlay { from{opacity:0} to{opacity:1} }
+.welcome-overlay.hide { animation: fadeOutOverlay 0.5s ease forwards; }
+@keyframes fadeOutOverlay { from{opacity:1} to{opacity:0;pointer-events:none} }
+
+.welcome-modal {
+  background: linear-gradient(160deg, #1a0a03 0%, #2d1206 50%, #1a0a03 100%);
+  border-radius: 24px; max-width: 400px; width: 100%;
+  overflow: hidden;
+  box-shadow: 0 30px 80px rgba(0,0,0,0.7), 0 0 0 1px rgba(200,137,74,0.25), inset 0 1px 0 rgba(255,255,255,0.05);
+  animation: slideUp 0.7s cubic-bezier(0.16,1,0.3,1);
+  position: relative;
+}
+@keyframes slideUp { from{transform:translateY(50px) scale(0.96);opacity:0} to{transform:translateY(0) scale(1);opacity:1} }
+.welcome-modal::before { content:''; position:absolute; top:0;left:0;right:0; height:2px; background:linear-gradient(90deg,transparent,#c8894a,#f5d07a,#c8894a,transparent); }
+
+.welcome-logo-section { padding:2.5rem 2rem 1.5rem; text-align:center; position:relative; }
+.welcome-logo-section::after { content:''; position:absolute; bottom:0;left:10%;right:10%; height:1px; background:linear-gradient(90deg,transparent,rgba(200,137,74,0.4),transparent); }
+.welcome-logo-wrap { width:140px; height:140px; margin:0 auto 0.5rem; filter:drop-shadow(0 8px 24px rgba(200,137,74,0.4)); animation: glowPulse 3s ease-in-out infinite; }
+@keyframes glowPulse {
+  0%,100% { filter:drop-shadow(0 8px 24px rgba(200,137,74,0.3)); }
+  50% { filter:drop-shadow(0 8px 36px rgba(200,137,74,0.65)); }
+}
+
+.welcome-body { padding:1.75rem 2rem 1.5rem; text-align:center; position:relative; }
+.welcome-body::after { content:''; position:absolute; bottom:0;left:10%;right:10%; height:1px; background:linear-gradient(90deg,transparent,rgba(200,137,74,0.3),transparent); }
+.welcome-ornament { color:#c8894a; font-size:0.7rem; letter-spacing:8px; margin-bottom:1rem; opacity:0.7; }
+.welcome-greeting { font-family:'Cormorant Garamond',serif; font-size:1.5rem; font-style:italic; color:#f5d07a; margin-bottom:1rem; }
+.welcome-text { font-family:'DM Sans',sans-serif; font-size:0.85rem; color:rgba(245,224,195,0.75); line-height:1.9; margin-bottom:1rem; }
+.welcome-quote { font-family:'Cormorant Garamond',serif; font-size:0.95rem; font-style:italic; color:#c8894a; line-height:1.7; padding:0.75rem 1rem; border-left:2px solid rgba(200,137,74,0.4); border-right:2px solid rgba(200,137,74,0.4); margin:0 1rem; }
+
+.welcome-footer { padding:1.75rem 2rem 2rem; text-align:center; }
+.welcome-ornament-mid { color:#c8894a; font-size:0.75rem; letter-spacing:6px; margin-bottom:1.25rem; opacity:0.6; }
+.welcome-btn {
+  background:linear-gradient(135deg,#6b3a1f 0%,#c8894a 100%);
+  color:#fdf8f3; border:none; padding:1rem 2.8rem; border-radius:50px;
+  font-family:'DM Sans',sans-serif; font-weight:600; font-size:0.95rem;
+  cursor:pointer; letter-spacing:1px; transition:all 0.3s;
+  box-shadow:0 6px 24px rgba(200,137,74,0.35);
+  display:inline-flex; align-items:center; gap:0.7rem;
+}
+.welcome-btn:hover { transform:translateY(-2px); box-shadow:0 10px 32px rgba(200,137,74,0.5); }
+.welcome-arrow { transition:transform 0.3s; }
+.welcome-btn:hover .welcome-arrow { transform:translateX(5px); }
+.welcome-note { margin-top:1.1rem; font-size:0.75rem; color:rgba(200,137,74,0.55); letter-spacing:1px; }
+
+@media(max-width:480px) {
+  .welcome-logo-wrap { width:110px; height:110px; }
+  .welcome-logo-section { padding:1.75rem 1.5rem 1.25rem; }
+  .welcome-body { padding:1.25rem 1.5rem; }
+  .welcome-footer { padding:1.25rem 1.5rem 1.75rem; }
+}
+
+/* ===== SEARCH BAR ===== */
+.search-wrap {
+  position: relative;
+  margin-bottom: 1.5rem;
+}
+.search-input {
+  width: 100%;
+  padding: 0.9rem 1rem 0.9rem 3rem;
+  border: 2px solid var(--light-accent);
+  border-radius: 50px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.95rem;
+  background: white;
+  color: var(--text);
+  transition: all 0.25s;
+  box-shadow: 0 2px 12px rgba(107,58,31,0.07);
+}
+.search-input:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 4px 20px rgba(107,58,31,0.12);
+}
+.search-icon {
+  position: absolute;
+  left: 1.1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.1rem;
+  pointer-events: none;
+}
+.search-clear {
+  position: absolute;
+  right: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  background: var(--light-accent);
+  border: none;
+  border-radius: 50%;
+  width: 24px; height: 24px;
+  cursor: pointer;
+  font-size: 0.8rem;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-light);
+}
+.search-clear.show { display: flex; }
+
+/* ===== BADGE PRODUK ===== */
+.badge-product {
+  position: absolute;
+  top: 10px; left: 10px;
+  padding: 0.25rem 0.7rem;
+  border-radius: 50px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  font-family: 'DM Sans', sans-serif;
+  letter-spacing: 0.3px;
+  z-index: 2;
+}
+.badge-terlaris {
+  background: linear-gradient(135deg, #e74c3c, #c0392b);
+  color: white;
+  box-shadow: 0 2px 8px rgba(231,76,60,0.4);
+}
+.badge-baru {
+  background: linear-gradient(135deg, #27ae60, #1e8449);
+  color: white;
+  box-shadow: 0 2px 8px rgba(39,174,96,0.4);
+}
+</style>
 </head>
 <body>
 
+<!-- WELCOME POPUP -->
+<div id="welcomeOverlay" class="welcome-overlay">
+  <div class="welcome-modal">
+    <div class="welcome-logo-section">
+      <div class="welcome-logo-wrap">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300" width="100%" height="100%">
+          <defs>
+            <radialGradient id="bgG" cx="50%" cy="50%" r="50%"><stop offset="0%" style="stop-color:#8B4513"/><stop offset="100%" style="stop-color:#3d1a06"/></radialGradient>
+            <linearGradient id="goldG" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#f5d07a"/><stop offset="50%" style="stop-color:#c8894a"/><stop offset="100%" style="stop-color:#e8b86d"/></linearGradient>
+            <linearGradient id="cupG" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" style="stop-color:#fdf8f3"/><stop offset="100%" style="stop-color:#e8d5c0"/></linearGradient>
+          </defs>
+          <circle cx="150" cy="150" r="148" fill="url(#bgG)"/>
+          <circle cx="150" cy="150" r="143" fill="none" stroke="url(#goldG)" stroke-width="1.5" opacity="0.6"/>
+          <circle cx="150" cy="150" r="135" fill="none" stroke="url(#goldG)" stroke-width="0.5" opacity="0.4"/>
+          <text x="150" y="38" text-anchor="middle" font-size="10" fill="url(#goldG)" opacity="0.8" letter-spacing="8">✦ ✦ ✦</text>
+          <path d="M122 105 Q118 95 122 85 Q126 75 122 65" fill="none" stroke="url(#goldG)" stroke-width="2.5" stroke-linecap="round" opacity="0.7"/>
+          <path d="M150 100 Q146 88 150 76 Q154 64 150 52" fill="none" stroke="url(#goldG)" stroke-width="2.5" stroke-linecap="round" opacity="0.7"/>
+          <path d="M178 105 Q174 95 178 85 Q182 75 178 65" fill="none" stroke="url(#goldG)" stroke-width="2.5" stroke-linecap="round" opacity="0.7"/>
+          <path d="M105 115 L110 185 Q110 195 120 195 L180 195 Q190 195 190 185 L195 115 Z" fill="url(#cupG)"/>
+          <ellipse cx="150" cy="130" rx="40" ry="10" fill="#6b3a1f" opacity="0.9"/>
+          <ellipse cx="150" cy="128" rx="38" ry="8" fill="#8B4513"/>
+          <path d="M135 126 Q142 120 150 126 Q158 132 165 126" fill="none" stroke="#c8894a" stroke-width="1.5" stroke-linecap="round" opacity="0.8"/>
+          <ellipse cx="150" cy="126" rx="10" ry="5" fill="none" stroke="#d4a57a" stroke-width="1" opacity="0.6"/>
+          <path d="M190 135 Q215 135 215 155 Q215 175 190 175" fill="none" stroke="url(#cupG)" stroke-width="8" stroke-linecap="round"/>
+          <ellipse cx="150" cy="198" rx="58" ry="9" fill="#e8d5c0"/>
+          <ellipse cx="150" cy="196" rx="55" ry="7" fill="#fdf0e0"/>
+          <line x1="75" y1="215" x2="225" y2="215" stroke="url(#goldG)" stroke-width="0.8" opacity="0.5"/>
+          <circle cx="150" cy="215" r="3" fill="url(#goldG)" opacity="0.7"/>
+          <circle cx="130" cy="215" r="1.5" fill="url(#goldG)" opacity="0.5"/>
+          <circle cx="170" cy="215" r="1.5" fill="url(#goldG)" opacity="0.5"/>
+          <text x="150" y="240" text-anchor="middle" font-family="Georgia,serif" font-size="22" font-weight="bold" fill="url(#goldG)" letter-spacing="3">DAR YUSUF</text>
+          <text x="150" y="260" text-anchor="middle" font-family="Georgia,serif" font-size="13" fill="url(#goldG)" letter-spacing="8" opacity="0.85">C A F É</text>
+          <text x="150" y="282" text-anchor="middle" font-size="9" fill="url(#goldG)" opacity="0.6" letter-spacing="6">✦ ✦ ✦</text>
+        </svg>
+      </div>
+    </div>
+    <div class="welcome-body">
+      <div class="welcome-ornament">✦ &nbsp;&nbsp; ✦ &nbsp;&nbsp; ✦</div>
+      <p class="welcome-greeting">Selamat Datang</p>
+      <p class="welcome-text">Kami menyambut kehadiran Anda dengan penuh kehangatan di Dar Yusuf Café — ruang kuliner yang kami rancang untuk menghadirkan pengalaman yang berkelas dan tak terlupakan.</p>
+      <p class="welcome-quote">"Setiap sajian adalah wujud dedikasi dan cinta<br>yang kami persembahkan untuk Anda."</p>
+    </div>
+    <div class="welcome-footer">
+      <div class="welcome-ornament-mid">— &nbsp; ✦ &nbsp; —</div>
+      <button class="welcome-btn" onclick="tutupWelcome()">
+        Mulai Memesan <span class="welcome-arrow">→</span>
+      </button>
+      <p class="welcome-note">Senin – Minggu &nbsp;|&nbsp; 07.00 – 22.00 WIB</p>
+    </div>
+  </div>
+</div>
+
+<!-- NAVBAR -->
 <nav class="navbar">
   <div class="nav-brand">☕ Dar Yusuf Café</div>
   <div class="nav-links">
@@ -19,6 +206,7 @@
   </div>
 </nav>
 
+<!-- HERO -->
 <header class="hero">
   <div class="hero-content">
     <h1>Dar Yusuf Café</h1>
@@ -26,14 +214,29 @@
   </div>
 </header>
 
+<!-- MAIN -->
 <main class="container">
   <h2 class="section-title">Menu Kami</h2>
 
+  <!-- SEARCH -->
+  <div class="search-wrap">
+    <span class="search-icon">🔍</span>
+    <input
+      type="text"
+      class="search-input"
+      id="searchInput"
+      placeholder="Cari menu... (contoh: kopi, nasi, snack)"
+      oninput="handleSearch(this.value); toggleClear(this.value)"
+    >
+    <button class="search-clear" id="searchClear" onclick="clearSearch()">✕</button>
+  </div>
+
+  <!-- TABS -->
   <div class="category-tabs">
-    <button class="tab active" onclick="filterMenu('semua')">Semua</button>
-    <button class="tab" onclick="filterMenu('minuman')">☕ Minuman</button>
-    <button class="tab" onclick="filterMenu('makanan')">🍽️ Makanan</button>
-    <button class="tab" onclick="filterMenu('snack')">🍪 Snack</button>
+    <button class="tab active" onclick="filterMenu('semua', this)">Semua</button>
+    <button class="tab" onclick="filterMenu('minuman', this)">☕ Minuman</button>
+    <button class="tab" onclick="filterMenu('makanan', this)">🍽️ Makanan</button>
+    <button class="tab" onclick="filterMenu('snack', this)">🍪 Snack</button>
   </div>
 
   <div class="product-grid" id="productGrid"></div>
@@ -50,5 +253,28 @@
 <script src="js/products.js"></script>
 <script src="js/cart.js"></script>
 <script src="js/main.js"></script>
+<script>
+function tutupWelcome() {
+  const overlay = document.getElementById('welcomeOverlay');
+  overlay.classList.add('hide');
+  setTimeout(() => overlay.style.display = 'none', 500);
+  sessionStorage.setItem('dyc_welcomed', '1');
+}
+if (sessionStorage.getItem('dyc_welcomed')) {
+  document.getElementById('welcomeOverlay').style.display = 'none';
+}
+
+function toggleClear(val) {
+  const btn = document.getElementById('searchClear');
+  btn.classList.toggle('show', val.length > 0);
+}
+function clearSearch() {
+  const input = document.getElementById('searchInput');
+  input.value = '';
+  handleSearch('');
+  toggleClear('');
+  input.focus();
+}
+</script>
 </body>
 </html>

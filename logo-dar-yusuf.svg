@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300" width="300" height="300">
+  <defs>
+    <radialGradient id="bgGrad" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" style="stop-color:#8B4513"/>
+      <stop offset="100%" style="stop-color:#3d1a06"/>
+    </radialGradient>
+    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#f5d07a"/>
+      <stop offset="50%" style="stop-color:#c8894a"/>
+      <stop offset="100%" style="stop-color:#e8b86d"/>
+    </linearGradient>
+    <linearGradient id="cupGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#fdf8f3"/>
+      <stop offset="100%" style="stop-color:#e8d5c0"/>
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Background circle -->
+  <circle cx="150" cy="150" r="148" fill="url(#bgGrad)"/>
+  <circle cx="150" cy="150" r="143" fill="none" stroke="url(#goldGrad)" stroke-width="1.5" opacity="0.6"/>
+  <circle cx="150" cy="150" r="135" fill="none" stroke="url(#goldGrad)" stroke-width="0.5" opacity="0.4"/>
+
+  <!-- Ornamen bintang atas -->
+  <text x="150" y="38" text-anchor="middle" font-size="10" fill="url(#goldGrad)" opacity="0.8" letter-spacing="8">✦ ✦ ✦</text>
+
+  <!-- Uap kopi (steam) -->
+  <path d="M122 105 Q118 95 122 85 Q126 75 122 65" fill="none" stroke="url(#goldGrad)" stroke-width="2.5" stroke-linecap="round" opacity="0.7"/>
+  <path d="M150 100 Q146 88 150 76 Q154 64 150 52" fill="none" stroke="url(#goldGrad)" stroke-width="2.5" stroke-linecap="round" opacity="0.7"/>
+  <path d="M178 105 Q174 95 178 85 Q182 75 178 65" fill="none" stroke="url(#goldGrad)" stroke-width="2.5" stroke-linecap="round" opacity="0.7"/>
+
+  <!-- Cangkir kopi - body -->
+  <path d="M105 115 L110 185 Q110 195 120 195 L180 195 Q190 195 190 185 L195 115 Z" fill="url(#cupGrad)"/>
+
+  <!-- Kopi di dalam cangkir -->
+  <ellipse cx="150" cy="130" rx="40" ry="10" fill="#6b3a1f" opacity="0.9"/>
+  <ellipse cx="150" cy="128" rx="38" ry="8" fill="#8B4513"/>
+
+  <!-- Latte art di atas kopi -->
+  <path d="M135 126 Q142 120 150 126 Q158 132 165 126" fill="none" stroke="#c8894a" stroke-width="1.5" stroke-linecap="round" opacity="0.8"/>
+  <ellipse cx="150" cy="126" rx="10" ry="5" fill="none" stroke="#d4a57a" stroke-width="1" opacity="0.6"/>
+
+  <!-- Handle cangkir -->
+  <path d="M190 135 Q215 135 215 155 Q215 175 190 175" fill="none" stroke="url(#cupGrad)" stroke-width="8" stroke-linecap="round"/>
+  <path d="M190 135 Q210 135 210 155 Q210 175 190 175" fill="none" stroke="#8B4513" stroke-width="3" stroke-linecap="round" opacity="0.3"/>
+
+  <!-- Piring / saucer -->
+  <ellipse cx="150" cy="198" rx="58" ry="9" fill="#e8d5c0"/>
+  <ellipse cx="150" cy="196" rx="55" ry="7" fill="#fdf0e0"/>
+  <ellipse cx="150" cy="196" rx="50" ry="5" fill="none" stroke="#c8894a" stroke-width="1" opacity="0.5"/>
+
+  <!-- Garis pemisah dekoratif -->
+  <line x1="75" y1="215" x2="225" y2="215" stroke="url(#goldGrad)" stroke-width="0.8" opacity="0.5"/>
+  <circle cx="150" cy="215" r="3" fill="url(#goldGrad)" opacity="0.7"/>
+  <circle cx="130" cy="215" r="1.5" fill="url(#goldGrad)" opacity="0.5"/>
+  <circle cx="170" cy="215" r="1.5" fill="url(#goldGrad)" opacity="0.5"/>
+
+  <!-- Nama Café -->
+  <text x="150" y="240" text-anchor="middle" font-family="Georgia, serif" font-size="22" font-weight="bold" fill="url(#goldGrad)" letter-spacing="3" filter="url(#glow)">DAR YUSUF</text>
+  <text x="150" y="260" text-anchor="middle" font-family="Georgia, serif" font-size="13" fill="url(#goldGrad)" letter-spacing="8" opacity="0.85">C A F É</text>
+
+  <!-- Ornamen bawah -->
+  <text x="150" y="282" text-anchor="middle" font-size="9" fill="url(#goldGrad)" opacity="0.6" letter-spacing="6">✦ ✦ ✦</text>
+</svg>
