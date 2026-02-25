@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Keranjang — Dar Yusuf Café</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="nav-brand">☕ Dar Yusuf Café</div>
+  <div class="nav-links">
+    <a href="index.html">Menu</a>
+    <a href="cart.html" class="active cart-link">
+      🛒 Keranjang <span class="cart-badge" id="cartCount">0</span>
+    </a>
+  </div>
+</nav>
+
+<main class="container" style="padding-top:100px">
+  <h2 class="section-title">🛒 Keranjang Belanja</h2>
+
+  <div id="cartEmpty" class="empty-state" style="display:none">
+    <div style="font-size:4rem">🛒</div>
+    <h3>Keranjang masih kosong</h3>
+    <a href="index.html" class="btn-primary">Lihat Menu</a>
+  </div>
+
+  <div id="cartContent">
+    <div class="cart-list" id="cartList"></div>
+
+    <div class="cart-summary">
+      <div class="summary-row">
+        <span>Subtotal</span>
+        <span id="subtotal">Rp 0</span>
+      </div>
+      <div class="summary-row">
+        <span>Pajak (10%)</span>
+        <span id="tax">Rp 0</span>
+      </div>
+      <div class="summary-row total">
+        <span>Total</span>
+        <span id="total">Rp 0</span>
+      </div>
+      <a href="checkout.html" class="btn-primary" style="display:block;text-align:center;margin-top:1.5rem">
+        Lanjut ke Pembayaran →
+      </a>
+      <a href="index.html" class="btn-secondary" style="display:block;text-align:center;margin-top:0.75rem">
+        ← Tambah Menu Lagi
+      </a>
+    </div>
+  </div>
+</main>
+
+<script src="js/products.js"></script>
+<script src="js/cart.js"></script>
+<script>
+  renderCart();
+</script>
+</body>
+</html>

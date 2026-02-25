@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pesanan Berhasil — Dar Yusuf Café</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body>
+
+<nav class="navbar no-print">
+  <div class="nav-brand">☕ Dar Yusuf Café</div>
+  <div class="nav-links">
+    <a href="index.html">Pesan Lagi</a>
+  </div>
+</nav>
+
+<main class="container" style="padding-top:100px">
+  <div class="success-banner no-print">
+    <div style="font-size:4rem">✅</div>
+    <h2>Pesanan Diterima!</h2>
+    <p>Pesananmu sedang kami proses. Terima kasih sudah memesan di Dar Yusuf Café ☕</p>
+  </div>
+
+  <!-- STRUK -->
+  <div class="struk" id="struk">
+    <div class="struk-header">
+      <div class="struk-logo">☕</div>
+      <h2>Dar Yusuf Café</h2>
+      <p>Kopi & Makanan Pilihan</p>
+      <p>DANA: 0857111594005</p>
+      <hr class="struk-divider">
+    </div>
+
+    <div class="struk-info">
+      <div class="struk-row"><span>No. Order</span><span id="strOrderId">-</span></div>
+      <div class="struk-row"><span>Tanggal</span><span id="strDate">-</span></div>
+      <div class="struk-row"><span>Nama</span><span id="strNama">-</span></div>
+      <div class="struk-row"><span>No. HP</span><span id="strHp">-</span></div>
+      <div class="struk-row"><span>Tipe</span><span id="strTipe">-</span></div>
+      <div class="struk-row" id="strMejaRow"><span>Meja</span><span id="strMeja">-</span></div>
+    </div>
+
+    <hr class="struk-divider">
+    <div class="struk-items" id="strItems"></div>
+    <hr class="struk-divider">
+
+    <div class="struk-total">
+      <div class="struk-row"><span>Subtotal</span><span id="strSubtotal">-</span></div>
+      <div class="struk-row"><span>Pajak (10%)</span><span id="strTax">-</span></div>
+      <div class="struk-row grand-total"><span>TOTAL</span><span id="strTotal">-</span></div>
+    </div>
+
+    <hr class="struk-divider">
+    <div class="struk-footer">
+      <p>Pembayaran: 💙 DANA</p>
+      <p id="strCatatan"></p>
+      <p style="margin-top:1rem;font-weight:600">Terima kasih telah berbelanja!</p>
+      <p>Selamat menikmati ☕</p>
+      <p style="font-size:0.75rem;margin-top:0.5rem;color:#999">Dar Yusuf Café</p>
+    </div>
+  </div>
+
+  <!-- Tombol Aksi -->
+  <div class="struk-actions no-print">
+    <button class="btn-primary" onclick="printStruk()">🖨️ Print Struk</button>
+    <button class="btn-secondary" onclick="downloadPDF()">📄 Download PDF</button>
+    <a href="index.html" class="btn-secondary">☕ Pesan Lagi</a>
+  </div>
+</main>
+
+<script src="js/products.js"></script>
+<script src="js/cart.js"></script>
+<script src="js/success.js"></script>
+</body>
+</html>

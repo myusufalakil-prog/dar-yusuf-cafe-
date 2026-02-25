@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Checkout — Dar Yusuf Café</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="nav-brand">☕ Dar Yusuf Café</div>
+  <div class="nav-links">
+    <a href="index.html">Menu</a>
+    <a href="cart.html" class="cart-link">🛒 Keranjang</a>
+  </div>
+</nav>
+
+<main class="container" style="padding-top:100px">
+  <h2 class="section-title">📋 Checkout</h2>
+
+  <div class="checkout-grid">
+    <!-- Form Data Pembeli -->
+    <div class="checkout-form">
+      <div class="card">
+        <h3>Data Pemesan</h3>
+        <div class="form-group">
+          <label>Nama Lengkap *</label>
+          <input type="text" id="nama" placeholder="Masukkan nama kamu" required>
+        </div>
+        <div class="form-group">
+          <label>Nomor HP / WhatsApp *</label>
+          <input type="tel" id="noHp" placeholder="08xxxxxxxxxx" required>
+        </div>
+        <div class="form-group">
+          <label>Catatan (opsional)</label>
+          <textarea id="catatan" placeholder="Contoh: tanpa gula, extra panas, dll" rows="3"></textarea>
+        </div>
+      </div>
+
+      <div class="card" style="margin-top:1.5rem">
+        <h3>Metode Pengambilan</h3>
+        <div class="radio-group">
+          <label class="radio-option">
+            <input type="radio" name="pengambilan" value="dine-in" checked>
+            <span>🍽️ Makan di Tempat (Dine-in)</span>
+          </label>
+          <label class="radio-option">
+            <input type="radio" name="pengambilan" value="takeaway">
+            <span>🥡 Bawa Pulang (Takeaway)</span>
+          </label>
+        </div>
+        <div id="tableGroup" class="form-group" style="margin-top:1rem">
+          <label>Nomor Meja</label>
+          <input type="text" id="noMeja" placeholder="Contoh: Meja 3">
+        </div>
+      </div>
+    </div>
+
+    <!-- Ringkasan Order -->
+    <div class="checkout-summary">
+      <div class="card">
+        <h3>Ringkasan Pesanan</h3>
+        <div id="orderSummary"></div>
+        <hr style="margin:1rem 0;border-color:#e0d5c5">
+        <div class="summary-row"><span>Subtotal</span><span id="coSubtotal">Rp 0</span></div>
+        <div class="summary-row"><span>Pajak (10%)</span><span id="coTax">Rp 0</span></div>
+        <div class="summary-row total"><span>Total</span><span id="coTotal">Rp 0</span></div>
+      </div>
+
+      <div class="card" style="margin-top:1.5rem">
+        <h3>💙 Pembayaran via DANA</h3>
+        <div class="dana-info">
+          <div class="dana-icon">💙</div>
+          <div>
+            <p style="font-weight:600;font-size:1.1rem">DANA</p>
+            <p style="font-size:1.3rem;font-weight:700;color:#118fda">0857111594005</p>
+            <p style="color:#666;font-size:0.85rem">a.n Dar Yusuf Café</p>
+          </div>
+        </div>
+        <div class="dana-steps">
+          <p>📱 <strong>Cara Bayar:</strong></p>
+          <ol>
+            <li>Buka aplikasi DANA</li>
+            <li>Tap <strong>Kirim</strong> → <strong>Ke Nomor HP</strong></li>
+            <li>Masukkan nomor <strong>0857111594005</strong></li>
+            <li>Masukkan nominal sesuai total</li>
+            <li>Upload bukti transfer di bawah</li>
+          </ol>
+        </div>
+      </div>
+
+      <div class="card" style="margin-top:1.5rem">
+        <h3>📸 Upload Bukti Transfer</h3>
+        <div class="upload-area" id="uploadArea" onclick="document.getElementById('buktiFile').click()">
+          <div id="uploadPlaceholder">
+            <div style="font-size:2.5rem">📸</div>
+            <p>Klik untuk upload bukti transfer DANA</p>
+            <p style="font-size:0.8rem;color:#999">JPG, PNG, max 5MB</p>
+          </div>
+          <img id="previewImg" style="display:none;max-width:100%;border-radius:8px" />
+        </div>
+        <input type="file" id="buktiFile" accept="image/*" style="display:none" onchange="previewBukti(event)">
+      </div>
+
+      <button class="btn-primary" style="width:100%;margin-top:1.5rem;font-size:1.1rem" onclick="submitOrder()">
+        ✅ Konfirmasi Pesanan
+      </button>
+    </div>
+  </div>
+</main>
+
+<script src="js/products.js"></script>
+<script src="js/cart.js"></script>
+<script src="js/checkout.js"></script>
+</body>
+</html>

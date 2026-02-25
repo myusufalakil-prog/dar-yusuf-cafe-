@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dar Yusuf Café</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="nav-brand">☕ Dar Yusuf Café</div>
+  <div class="nav-links">
+    <a href="index.html" class="active">Menu</a>
+    <a href="cart.html" class="cart-link">
+      🛒 Keranjang <span class="cart-badge" id="cartCount">0</span>
+    </a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="hero-content">
+    <h1>Dar Yusuf Café</h1>
+    <p>Kopi & Makanan Pilihan, Dibuat dengan Cinta ❤️</p>
+  </div>
+</header>
+
+<main class="container">
+  <h2 class="section-title">Menu Kami</h2>
+
+  <div class="category-tabs">
+    <button class="tab active" onclick="filterMenu('semua')">Semua</button>
+    <button class="tab" onclick="filterMenu('minuman')">☕ Minuman</button>
+    <button class="tab" onclick="filterMenu('makanan')">🍽️ Makanan</button>
+    <button class="tab" onclick="filterMenu('snack')">🍪 Snack</button>
+  </div>
+
+  <div class="product-grid" id="productGrid"></div>
+</main>
+
+<div class="floating-cart" onclick="window.location='cart.html'">
+  🛒 <span id="floatCartCount">0</span> item — Rp <span id="floatCartTotal">0</span>
+</div>
+
+<footer class="footer">
+  <p>☕ Dar Yusuf Café — Nikmati setiap tegukan</p>
+</footer>
+
+<script src="js/products.js"></script>
+<script src="js/cart.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
